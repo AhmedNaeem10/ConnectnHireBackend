@@ -23,9 +23,7 @@ app.use(function (req, res, next) {
   });
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(4000, ()=>{
-    console.log('Listening at port 4000 ... ')
-})
+app.listen(process.env.PORT || 5000)
 
 app.get('/', (req, res)=>{
     res.send("nonsense")
