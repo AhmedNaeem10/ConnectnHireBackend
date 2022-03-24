@@ -11,11 +11,11 @@ var cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'https://connect-and-hire.herokuapp.com/',
+    origin: 'https://connect-and-hire.herokuapp.com',
     credentials: true
 }));
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "https://connect-and-hire.herokuapp.com/");
+    res.header('Access-Control-Allow-Origin', "https://connect-and-hire.herokuapp.com");
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
