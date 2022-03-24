@@ -4,7 +4,7 @@ const signup = require('./controllers/signup')
 const job = require('./controllers/job')
 const user = require('./controllers/user')
 const message = require('./controllers/message')
-
+const a = 1;
 var cors = require('cors');
 
 const app = express();
