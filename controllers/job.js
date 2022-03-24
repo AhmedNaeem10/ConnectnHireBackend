@@ -66,7 +66,7 @@ exports.apply = async (req, res) => {
                 let response = await dbo.collection("users").updateOne({username:job.client}, {$set: user})
                 console.log("notification pushed")
                 if(response.acknowledged){
-                    let res_ = await axios.get(`http://localhost:4000/user/${job.client}`);
+                    let res_ = await axios.get(`https://young-cliffs-72209.herokuapp.com/user/${job.client}`);
                     user = res_.data
                     email.application_received(job.client, user.email, job.freelancer, job.title);
                 }
@@ -224,8 +224,8 @@ exports.changeToCurrent = (req, res) => {
             let user = await dbo.collection("users").findOne({username: application.freelancer})
             user.notifications.push(notification)
             response = await dbo.collection("users").updateOne({username:application.freelancer}, {$set: user})
-            response = axios.delete(`http://localhost:4000/deleteJob/${application.job_id}`)
-            let res_ = await axios.get(`http://localhost:4000/user/${application.freelancer}`);
+            response = axios.delete(`https://young-cliffs-72209.herokuapp.com/deleteJob/${application.job_id}`)
+            let res_ = await axios.get(`https://young-cliffs-72209.herokuapp.com/user/${application.freelancer}`);
             user = res_.data
             email.application_accepted(user.username, user.email, application.client, application.title);
             res.send("success")
@@ -249,7 +249,7 @@ exports.changeToDelivered = (req, res) => {
             let user = await dbo.collection("users").findOne({username: application.client})
             user.notifications.push(notification)
             response = await dbo.collection("users").updateOne({username:application.client}, {$set: user})
-            let res_ = await axios.get(`http://localhost:3000/user/${application.client}`);
+            let res_ = await axios.get(`hhttps://young-cliffs-72209.herokuapp.com/user/${application.client}`);
             user = res_.data;
             email.job_delivered(user.username, user.email, application.freelancer, application.title);
             res.send("success")
@@ -273,7 +273,7 @@ exports.changeToCompleted = (req, res) => {
             let user = await dbo.collection("users").findOne({username: application.freelancer})
             user.notifications.push(notification)
             response = await dbo.collection("users").updateOne({username:application.freelancer}, {$set: user})
-            let res_ = await axios.get(`http://localhost:4000/user/${application.freelancer}`);
+            let res_ = await axios.get(`https://young-cliffs-72209.herokuapp.com/user/${application.freelancer}`);
             user = res_.data;
             email.application_accepted(user.username, user.email, application.client, application.title)
             res.send("success")
