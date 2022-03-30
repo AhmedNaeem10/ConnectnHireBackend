@@ -249,7 +249,7 @@ exports.changeToDelivered = (req, res) => {
             let user = await dbo.collection("users").findOne({username: application.client})
             user.notifications.push(notification)
             response = await dbo.collection("users").updateOne({username:application.client}, {$set: user})
-            let res_ = await axios.get(`hhttps://young-cliffs-72209.herokuapp.com/user/${application.client}`);
+            let res_ = await axios.get(`https://young-cliffs-72209.herokuapp.com/user/${application.client}`);
             user = res_.data;
             email.job_delivered(user.username, user.email, application.freelancer, application.title);
             res.send("success")
